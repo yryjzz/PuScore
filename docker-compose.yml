@@ -1,0 +1,41 @@
+services:
+  puscore-backend:
+    build:
+      context: ./server
+      dockerfile: dockerfile
+    container_name: puscore-server
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOST=0.0.0.0
+      - DOCKER_INIT=true
+    volumes:
+      # 持久化数据库文件
+      - puscore_data:/app/data
+      # 持久化日志文件
+      - puscore_logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - puscore-network
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "const http = require('http'); const req = http.request('http://localhost:3000/api/health', res => { process.exit(res.statusCode === 200 ? 0 : 1) }); req.on('error', () => process.exit(1)); req.end()",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  puscore_data:
+  puscore_logs:
+
+networks:
+  puscore-network:
+    driver: bridge

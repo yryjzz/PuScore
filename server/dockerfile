@@ -1,26 +1,41 @@
-# 使用完整版 Node.js 镜像
+# 使用本地的 Node.js 20 完整镜像（包含构建工具）
 FROM node:20
 
-# 设置工作目录为 /app
+# 设置工作目录
 WORKDIR /app
 
-# 将本地的 package.json 和 package-lock.json 文件复制到容器中
+# 复制 package.json 和 package-lock.json
 COPY package*.json ./
 
-# 安装项目依赖
-RUN npm install
+# 安装依赖
+RUN npm ci --only=production
 
-# 重新安装 sqlite3，确保二进制文件正确
-RUN npm rebuild sqlite3
+# 复制应用代码
+COPY src/ ./src/
 
-# 将本地的源代码复制到容器中
-COPY . .
+# 创建数据目录和复制数据库
+RUN mkdir -p /app/data /app/logs
+COPY database.sqlite ./data/database.sqlite
 
-# 如果你的应用需要构建步骤，运行构建命令
-RUN npm run build
+# 创建非 root 用户（Debian/Ubuntu 格式）
+RUN groupadd --gid 1001 nodejs
+RUN useradd --uid 1001 --gid nodejs --shell /bin/bash --create-home nodejs
 
-# 暴露端口，这里假设你的应用运行在 3000 端口
+# 设置文件权限
+RUN chown -R nodejs:nodejs /app
+USER nodejs
+
+# 暴露端口
 EXPOSE 3000
+
+# 健康检查
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD node -e "const http = require('http'); \
+    const req = http.request('http://localhost:3000/api/health', res => { \
+      process.exit(res.statusCode === 200 ? 0 : 1) \
+    }); \
+    req.on('error', () => process.exit(1)); \
+    req.end()"
 
 # 启动应用
 CMD ["npm", "start"]

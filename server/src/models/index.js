@@ -94,8 +94,11 @@ const syncDatabase = async () => {
     await sequelize.authenticate();
     console.log("数据库连接成功");
 
-    // 同步所有模型到数据库（开发环境）
-    if (process.env.NODE_ENV === "development") {
+    // 同步所有模型到数据库（开发环境或 Docker 首次启动）
+    if (
+      process.env.NODE_ENV === "development" ||
+      process.env.DOCKER_INIT === "true"
+    ) {
       // 禁用外键约束（仅开发环境，避免同步时的约束冲突）
       await sequelize.query("PRAGMA foreign_keys = OFF;");
       console.log("已禁用外键约束");
