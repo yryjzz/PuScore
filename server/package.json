@@ -9,7 +9,6 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
-    "install-node": "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash && export NVM_DIR=\"$HOME/.nvm\" && [ -s \"$NVM_DIR/nvm.sh\" ] && \\. \"$NVM_DIR/nvm.sh\" && nvm install 22.17.0",
     "build": "esbuild src/app.js --bundle --platform=node --outfile=dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
