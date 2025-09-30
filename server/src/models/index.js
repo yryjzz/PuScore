@@ -94,14 +94,17 @@ const syncDatabase = async () => {
     await sequelize.authenticate();
     console.log("数据库连接成功");
 
-    // 同步所有模型到数据库（开发环境或 Docker 首次启动）
+    // 同步所有模型到数据库（开发环境、Docker 首次启动或 Railway 部署）
     if (
       process.env.NODE_ENV === "development" ||
-      process.env.DOCKER_INIT === "true"
+      process.env.DOCKER_INIT === "true" ||
+      process.env.RAILWAY_DEPLOYMENT === "true"
     ) {
-      // 禁用外键约束（仅开发环境，避免同步时的约束冲突）
-      await sequelize.query("PRAGMA foreign_keys = OFF;");
-      console.log("已禁用外键约束");
+      // 只有 SQLite 才需要禁用外键约束
+      if (sequelize.getDialect() === "sqlite") {
+        await sequelize.query("PRAGMA foreign_keys = OFF;");
+        console.log("已禁用外键约束");
+      }
 
       // 使用 force: false 避免删除表，只创建不存在的表
       await User.sync({ force: false });
@@ -121,9 +124,11 @@ const syncDatabase = async () => {
       await TeamMember.sync({ force: false });
       console.log("TeamMember 表同步完成");
 
-      // 重新启用外键约束
-      await sequelize.query("PRAGMA foreign_keys = ON;");
-      console.log("已启用外键约束");
+      // 只有 SQLite 才需要重新启用外键约束
+      if (sequelize.getDialect() === "sqlite") {
+        await sequelize.query("PRAGMA foreign_keys = ON;");
+        console.log("已启用外键约束");
+      }
 
       console.log("数据库表结构同步完成");
     } else {
