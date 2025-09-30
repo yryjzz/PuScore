@@ -1,0 +1,382 @@
+.dashboard-page {
+  min-height: 100vh;
+  padding: 20px;
+  background: var(--dark-bg);
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.dashboard-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  overflow: hidden;
+  /* 防止背景阻止点击事件 */
+  pointer-events: none;
+}
+
+.dashboard-background .circuit-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+      90deg,
+      rgba(0, 255, 255, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 80px 80px;
+  animation: circuitMove 30s linear infinite;
+  opacity: 0.4;
+  /* 防止背景阻止点击事件 */
+  pointer-events: none;
+}
+
+.dashboard-background .floating-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+      3px 3px at 40px 60px,
+      var(--neon-blue),
+      transparent
+    ),
+    radial-gradient(2px 2px at 120px 40px, var(--neon-pink), transparent),
+    radial-gradient(2px 2px at 200px 80px, var(--neon-green), transparent),
+    radial-gradient(1px 1px at 280px 120px, var(--neon-purple), transparent),
+    radial-gradient(2px 2px at 360px 160px, var(--neon-orange), transparent);
+  background-repeat: repeat;
+  background-size: 400px 200px;
+  animation: particleFloat 20s ease-in-out infinite;
+  opacity: 0.3;
+  /* 防止背景阻止点击事件 */
+  pointer-events: none;
+}
+
+.dashboard-container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  z-index: 10;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 40px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.dashboard-title {
+  font-size: 56px;
+  margin-bottom: 12px;
+  background: linear-gradient(
+    45deg,
+    var(--neon-blue),
+    var(--neon-pink),
+    var(--neon-green)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+  animation: titleGlow 4s ease-in-out infinite alternate;
+}
+
+.dashboard-subtitle {
+  color: var(--text-secondary);
+  font-family: var(--font-secondary);
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.dashboard-content {
+  display: grid;
+  gap: 24px;
+  margin-bottom: 40px;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+/* 用户信息卡片 */
+.user-info-card {
+  background: rgba(15, 15, 15, 0.95);
+  border: 1px solid rgba(0, 255, 255, 0.4);
+}
+
+.user-info {
+  display: grid;
+  gap: 16px;
+}
+
+.user-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(0, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 255, 0.1);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.user-detail:hover {
+  background: rgba(0, 255, 255, 0.08);
+  border-color: rgba(0, 255, 255, 0.2);
+  transform: translateX(4px);
+}
+
+.detail-label {
+  font-family: var(--font-primary);
+  font-size: 14px;
+  color: var(--neon-blue);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.detail-value {
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.detail-value.points {
+  color: var(--neon-green);
+  font-weight: 700;
+  font-size: 18px;
+  text-shadow: 0 0 10px rgba(0, 255, 128, 0.3);
+}
+
+/* 操作按钮卡片 */
+.actions-card {
+  background: rgba(15, 15, 15, 0.95);
+}
+
+.action-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.action-btn {
+  justify-self: stretch;
+}
+
+/* 签到卡片 */
+.checkin-card {
+  background: rgba(15, 15, 15, 0.95);
+  border: 1px solid rgba(0, 255, 255, 0.15);
+}
+
+.checkin-card:hover {
+  border-color: rgba(0, 255, 255, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 255, 255, 0.1);
+}
+
+/* 组队卡片 */
+.team-card {
+  background: rgba(15, 15, 15, 0.95);
+  border: 1px solid rgba(255, 0, 255, 0.15);
+}
+
+.team-card:hover {
+  border-color: rgba(255, 0, 255, 0.25);
+  box-shadow: 0 4px 20px rgba(255, 0, 255, 0.1);
+}
+
+/* 商品兑换卡片 */
+.exchange-card {
+  background: rgba(15, 15, 15, 0.95);
+  border: 1px solid rgba(255, 215, 0, 0.15);
+}
+
+.exchange-card:hover {
+  border-color: rgba(255, 215, 0, 0.25);
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.1);
+}
+
+/* 历史记录卡片 */
+.history-card {
+  background: rgba(15, 15, 15, 0.95);
+  border: 1px solid rgba(0, 255, 136, 0.15);
+}
+
+.history-card:hover {
+  border-color: rgba(0, 255, 136, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 255, 136, 0.1);
+}
+
+/* 管理员面板相关样式 */
+.admin-panel-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 100%);
+}
+
+.admin-panel-header {
+  padding: 20px;
+  background: rgba(10, 10, 10, 0.8);
+  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.back-to-dashboard-btn {
+  background: rgba(0, 255, 255, 0.1) !important;
+  border: 1px solid rgba(0, 255, 255, 0.3) !important;
+  color: #00ffff !important;
+  transition: all 0.3s ease !important;
+}
+
+.back-to-dashboard-btn:hover {
+  background: rgba(0, 255, 255, 0.2) !important;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3) !important;
+}
+
+.admin-btn {
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4) !important;
+  border: none !important;
+  color: white !important;
+  font-weight: 600 !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.admin-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3) !important;
+}
+
+/* 页脚 */
+.dashboard-footer {
+  text-align: center;
+  padding-top: 24px;
+  border-top: 1px solid var(--dark-border);
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.version-info {
+  opacity: 0.6;
+}
+
+.version-text {
+  font-family: var(--font-primary);
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* 动画效果 */
+@keyframes circuitMove {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  100% {
+    transform: translateX(80px) translateY(80px);
+  }
+}
+
+@keyframes particleFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-30px) rotate(120deg);
+  }
+  66% {
+    transform: translateY(30px) rotate(240deg);
+  }
+}
+
+@keyframes titleGlow {
+  0% {
+    filter: brightness(1) contrast(1);
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  }
+  100% {
+    filter: brightness(1.3) contrast(1.2);
+    text-shadow: 0 0 40px rgba(0, 255, 255, 0.6);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .dashboard-page {
+    padding: 16px;
+  }
+
+  .dashboard-title {
+    font-size: 42px;
+  }
+
+  .dashboard-subtitle {
+    font-size: 16px;
+  }
+
+  .dashboard-content {
+    gap: 20px;
+  }
+
+  .action-buttons {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .feature-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-title {
+    font-size: 36px;
+  }
+
+  .dashboard-subtitle {
+    font-size: 14px;
+  }
+
+  .user-detail {
+    padding: 10px 14px;
+  }
+
+  .detail-label {
+    font-size: 12px;
+  }
+
+  .detail-value {
+    font-size: 14px;
+  }
+
+  .detail-value.points {
+    font-size: 16px;
+  }
+
+  .feature-list {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-item {
+    padding: 12px;
+  }
+}

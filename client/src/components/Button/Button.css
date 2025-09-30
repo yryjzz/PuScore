@@ -1,0 +1,212 @@
+.cyber-btn {
+  position: relative;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.cyber-btn__content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: transparent;
+  border: 2px solid;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 15px) 0,
+    100% 50%,
+    calc(100% - 15px) 100%,
+    0 100%
+  );
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.cyber-btn__glitch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  opacity: 0;
+  z-index: 1;
+}
+
+/* 按钮尺寸 */
+.cyber-btn--small .cyber-btn__content {
+  padding: 8px 16px;
+  font-size: 12px;
+}
+
+.cyber-btn--medium .cyber-btn__content {
+  padding: 12px 24px;
+  font-size: 14px;
+}
+
+.cyber-btn--large .cyber-btn__content {
+  padding: 16px 32px;
+  font-size: 16px;
+}
+
+/* 按钮变体 - Primary */
+.cyber-btn--primary .cyber-btn__content {
+  color: var(--neon-blue);
+  border-color: var(--neon-blue);
+}
+
+.cyber-btn--primary:hover .cyber-btn__content {
+  color: var(--dark-bg);
+  background: var(--neon-blue);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5),
+    inset 0 0 20px rgba(0, 255, 255, 0.2);
+  text-shadow: none;
+}
+
+.cyber-btn--primary:active .cyber-btn__content {
+  transform: scale(0.98);
+}
+
+/* 按钮变体 - Danger */
+.cyber-btn--danger .cyber-btn__content {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.cyber-btn--danger:hover .cyber-btn__content {
+  color: var(--text-primary);
+  background: rgba(255, 0, 64, 0.2);
+  box-shadow: 0 0 20px rgba(255, 0, 64, 0.5),
+    inset 0 0 20px rgba(255, 0, 64, 0.1);
+}
+
+/* 按钮变体 - Success */
+.cyber-btn--success .cyber-btn__content {
+  color: var(--success);
+  border-color: var(--success);
+}
+
+.cyber-btn--success:hover .cyber-btn__content {
+  color: var(--dark-bg);
+  background: var(--success);
+  box-shadow: 0 0 20px rgba(0, 255, 128, 0.5),
+    inset 0 0 20px rgba(0, 255, 128, 0.2);
+}
+
+/* 按钮变体 - Secondary */
+.cyber-btn--secondary .cyber-btn__content {
+  color: var(--text-secondary);
+  border-color: var(--text-secondary);
+}
+
+.cyber-btn--secondary:hover .cyber-btn__content {
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* 加载状态 */
+.cyber-btn--loading .cyber-btn__content {
+  pointer-events: none;
+}
+
+.cyber-btn__loading {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.cyber-btn__text--loading {
+  opacity: 0.7;
+}
+
+/* 禁用状态 */
+.cyber-btn--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* 悬停效果 - 故障风格 */
+.cyber-btn:hover .cyber-btn__glitch {
+  opacity: 1;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(0, 255, 255, 0.1) 40%,
+    transparent 50%
+  );
+  animation: glitchSweep 0.6s ease-in-out;
+}
+
+/* 特殊效果动画 */
+@keyframes glitchSweep {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-15deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* 点击波纹效果 */
+.cyber-btn:active .cyber-btn__content::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(
+    circle,
+    rgba(0, 255, 255, 0.3) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+  to {
+    width: 200px;
+    height: 200px;
+    opacity: 0;
+  }
+}
+
+/* 响应式适配 */
+@media (max-width: 768px) {
+  .cyber-btn--medium .cyber-btn__content {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  .cyber-btn--large .cyber-btn__content {
+    padding: 14px 28px;
+    font-size: 15px;
+  }
+}

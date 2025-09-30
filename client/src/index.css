@@ -1,0 +1,303 @@
+/* 赛博朋克风格全局样式 */
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap");
+
+:root {
+  /* 赛博朋克配色方案 */
+  --neon-blue: #00ffff;
+  --neon-pink: #ff00ff;
+  --neon-green: #00ff00;
+  --neon-purple: #8a2be2;
+  --neon-orange: #ff6600;
+  --dark-bg: #0a0a0a;
+  --dark-surface: #111111;
+  --dark-border: #222222;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --text-muted: #888888;
+  --danger: #ff0040;
+  --success: #00ff80;
+  --warning: #ffaa00;
+
+  /* 额外的颜色变量 */
+  --success-color: #00ff80;
+  --danger-color: #ff0040;
+  --card-bg: rgba(17, 17, 17, 0.8);
+  --border-color: #333333;
+
+  /* 字体 */
+  --font-primary: "Orbitron", monospace;
+  --font-secondary: "Rajdhani", sans-serif;
+  --font-mono: "Courier New", monospace;
+
+  /* 阴影和发光效果 */
+  --neon-glow: 0 0 10px currentColor, 0 0 20px currentColor,
+    0 0 30px currentColor;
+  --box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 50%, #0a0a0a 100%);
+  color: var(--text-primary);
+  font-family: var(--font-secondary);
+}
+
+body {
+  background-image: radial-gradient(
+      circle at 20% 50%,
+      rgba(0, 255, 255, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(255, 0, 255, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 80%,
+      rgba(0, 255, 0, 0.05) 0%,
+      transparent 50%
+    );
+  background-attachment: fixed;
+}
+
+/* 全局动画 */
+@keyframes neonPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue));
+}
+
+/* 根容器 */
+#root {
+  height: 100vh;
+  width: 100%;
+}
+
+/* 通用按钮样式 */
+.btn {
+  position: relative;
+  padding: 12px 24px;
+  border: 2px solid var(--neon-blue);
+  background: transparent;
+  color: var(--neon-blue);
+  font-family: var(--font-primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+  z-index: -1;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn:hover {
+  color: var(--text-primary);
+  background: rgba(0, 255, 255, 0.1);
+  box-shadow: var(--neon-glow);
+  text-shadow: 0 0 10px currentColor;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn.btn-primary {
+  border-color: var(--neon-blue);
+  color: var(--neon-blue);
+}
+
+.btn.btn-danger {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.btn.btn-success {
+  border-color: var(--success);
+  color: var(--success);
+}
+
+/* 输入框样式 */
+.form-input {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(17, 17, 17, 0.8);
+  border: 1px solid var(--dark-border);
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--neon-blue);
+  background: rgba(17, 17, 17, 0.95);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* 标题样式 */
+.neon-title {
+  font-family: var(--font-primary);
+  font-weight: 900;
+  text-transform: uppercase;
+  background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+  animation: neonPulse 2s infinite;
+}
+
+/* 加载动画 */
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--dark-border);
+  border-radius: 50%;
+  border-top: 2px solid var(--neon-blue);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .form-input {
+    padding: 12px 16px;
+    font-size: 16px;
+  }
+}
+
+/* 移动端滚动优化 */
+@media (max-width: 768px) {
+  html,
+  body {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    overscroll-behavior-y: none; /* 防止iOS Safari的弹跳效果 */
+    -webkit-overflow-scrolling: touch; /* iOS平滑滚动 */
+  }
+
+  body {
+    position: relative;
+  }
+
+  /* 确保所有页面容器都支持滚动 */
+  .dashboard-page {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+}

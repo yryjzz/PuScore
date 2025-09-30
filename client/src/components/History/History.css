@@ -1,0 +1,316 @@
+/* History组件样式 */
+.history-container {
+  width: 100%;
+}
+
+/* 标签页导航 */
+.history-tabs {
+  display: flex;
+  border-bottom: 2px solid rgba(0, 255, 255, 0.2);
+  margin-bottom: 20px;
+  gap: 2px;
+}
+
+.tab-button {
+  padding: 12px 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+}
+
+.tab-button:hover {
+  background: rgba(0, 255, 255, 0.1);
+  color: #00ffff;
+}
+
+.tab-button.active {
+  background: rgba(0, 255, 255, 0.2);
+  color: #00ffff;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.tab-button.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #00ffff;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* 内容区域 */
+.history-content {
+  min-height: 300px;
+}
+
+/* 记录列表 */
+.records-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.record-item {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 16px;
+  transition: all 0.3s ease;
+}
+
+.record-item:hover {
+  border-color: rgba(0, 255, 255, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.1);
+}
+
+.record-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.record-type {
+  font-weight: 600;
+  color: #00ffff;
+  font-size: 14px;
+}
+
+.record-points {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.record-points.positive {
+  color: #00ff88;
+}
+
+.record-points.negative {
+  color: #ff4444;
+}
+
+.record-status {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.record-status.completed {
+  color: #00ff88;
+  background: rgba(0, 255, 136, 0.1);
+}
+
+.record-status.pending {
+  color: #00ccff;
+  background: rgba(0, 204, 255, 0.1);
+}
+
+.record-status.expired {
+  color: #ff6666;
+  background: rgba(255, 102, 102, 0.1);
+}
+
+.record-body {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.record-description {
+  margin: 0 0 6px 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.record-time {
+  margin: 0 0 4px 0;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.record-expire {
+  margin: 0 0 4px 0;
+  font-size: 12px;
+  color: #ffaa00;
+}
+
+.record-complete {
+  margin: 0 0 4px 0;
+  font-size: 12px;
+  color: #00ff88;
+}
+
+.record-reward {
+  margin: 0;
+  font-size: 12px;
+  color: #00ffcc;
+  font-weight: 600;
+}
+
+.record-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 8px;
+  gap: 12px;
+}
+
+.record-balance {
+  margin: 0;
+  font-size: 12px;
+  color: #00ffaa;
+  font-weight: 600;
+}
+
+/* 不同类型记录的特殊样式 */
+.point-record {
+  border-left: 3px solid #00ffff;
+}
+
+.exchange-record {
+  border-left: 3px solid #ff6600;
+}
+
+.team-record {
+  border-left: 3px solid #aa00ff;
+}
+
+/* 无数据提示 */
+.no-data {
+  text-align: center;
+  padding: 60px 20px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.no-data p {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+}
+
+.text-muted {
+  color: rgba(255, 255, 255, 0.4) !important;
+  font-size: 14px !important;
+}
+
+/* 加载状态 */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(0, 255, 255, 0.1);
+  border-top-color: #00ffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 错误提示 */
+.error-message {
+  background: rgba(255, 68, 68, 0.1);
+  border: 1px solid rgba(255, 68, 68, 0.3);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  color: #ff4444;
+  margin-bottom: 20px;
+}
+
+.error-message p {
+  margin: 0 0 12px 0;
+}
+
+/* 分页 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+.page-info {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  font-weight: 500;
+  min-width: 60px;
+  text-align: center;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .history-tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .history-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab-button {
+    white-space: nowrap;
+    min-width: 100px;
+  }
+
+  .record-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .record-points,
+  .record-status {
+    align-self: flex-end;
+  }
+
+  .pagination {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .record-item {
+    padding: 12px;
+  }
+
+  .tab-button {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .record-details {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .record-balance {
+    align-self: flex-end;
+  }
+}

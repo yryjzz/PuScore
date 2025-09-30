@@ -1,0 +1,390 @@
+.checkin-container {
+  width: 100%;
+}
+
+/* 加载状态 */
+.checkin-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.loading-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--border-color);
+  border-top: 2px solid var(--neon-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 12px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* 错误状态 */
+.checkin-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.error-message {
+  color: var(--danger-color);
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+/* 头部 */
+.checkin-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.checkin-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.checkin-title h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+  background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.checkin-period {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  opacity: 0.8;
+  text-align: center;
+}
+
+/* 签到按钮区域 */
+.checkin-action {
+  display: flex;
+  justify-content: center;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.checkin-btn {
+  white-space: nowrap;
+  animation: pulseGlow 2s ease-in-out infinite;
+  min-width: 120px;
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+  }
+}
+
+/* 签到日历 */
+.checkin-calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.checkin-day {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 12px 8px;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s ease;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.checkin-day:hover {
+  border-color: var(--neon-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 255, 255, 0.2);
+}
+
+.checkin-day.today {
+  border-color: var(--neon-blue);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 255, 0.1),
+    rgba(255, 0, 255, 0.1)
+  );
+  animation: todayGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes todayGlow {
+  0% {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+  }
+}
+
+.checkin-day.checked {
+  border-color: var(--success-color);
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.1),
+    rgba(34, 197, 94, 0.05)
+  );
+}
+
+.day-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.day-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.check-mark {
+  position: absolute;
+  right: -4px;
+  top: -4px;
+  width: 16px;
+  height: 16px;
+  background: var(--success-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: white;
+  font-weight: bold;
+}
+
+.day-reward {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 30px;
+}
+
+.points-reward {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--neon-green);
+  text-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+}
+
+.surprise-coupon,
+.surprise-lottery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.surprise-icon {
+  width: 20px;
+  height: 16px;
+  background: linear-gradient(45deg, var(--neon-pink), var(--neon-orange));
+  border-radius: 4px;
+  font-size: 8px;
+  font-weight: bold;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: none;
+}
+
+.surprise-lottery .surprise-icon {
+  background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
+  font-size: 6px;
+}
+
+.surprise-text {
+  font-size: 8px;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.2;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: keep-all;
+}
+
+.today-indicator {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--neon-blue);
+  color: white;
+  font-size: 8px;
+  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 8px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 255, 255, 0.4);
+}
+
+/* 签到完成状态 */
+.checkin-completed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px;
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.1),
+    rgba(34, 197, 94, 0.05)
+  );
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 12px;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.completed-text {
+  font-size: 14px;
+  color: var(--success-color);
+  font-weight: 500;
+}
+
+.completed-points {
+  font-size: 14px;
+  color: var(--neon-green);
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .checkin-calendar {
+    gap: 6px;
+  }
+
+  .checkin-day {
+    padding: 8px 4px;
+    min-height: 70px;
+  }
+
+  .points-reward {
+    font-size: 14px;
+  }
+
+  .surprise-icon {
+    width: 18px;
+    height: 14px;
+    font-size: 7px;
+  }
+
+  .surprise-text {
+    font-size: 7px;
+  }
+
+  .today-indicator {
+    font-size: 7px;
+    padding: 1px 4px;
+  }
+
+  .checkin-header {
+    gap: 12px;
+  }
+
+  .checkin-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .day-name {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkin-calendar {
+    gap: 4px;
+  }
+
+  .checkin-day {
+    padding: 6px 2px;
+    min-height: 60px;
+  }
+
+  .day-name {
+    font-size: 10px;
+  }
+
+  .points-reward {
+    font-size: 12px;
+  }
+
+  .surprise-icon {
+    width: 16px;
+    height: 12px;
+    font-size: 6px;
+  }
+
+  .surprise-text {
+    font-size: 6px;
+  }
+
+  .checkin-title h3 {
+    font-size: 18px;
+  }
+
+  .checkin-period {
+    font-size: 11px;
+  }
+
+  .checkin-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .completed-text,
+  .completed-points {
+    font-size: 12px;
+  }
+}

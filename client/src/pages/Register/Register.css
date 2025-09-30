@@ -1,0 +1,327 @@
+.register-page {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: var(--dark-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.register-container {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  z-index: 10;
+}
+
+.register-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  overflow: hidden;
+  /* 防止背景阻止点击事件 */
+  pointer-events: none;
+}
+
+/* 继承登录页面的背景效果 */
+.register-background .circuit-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+      90deg,
+      rgba(0, 255, 128, 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(rgba(0, 255, 128, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: circuitMove 20s linear infinite;
+  opacity: 0.3;
+  /* 防止背景阻止点击事件 */
+  pointer-events: none;
+}
+
+.register-background .floating-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+      2px 2px at 20px 30px,
+      var(--neon-green),
+      transparent
+    ),
+    radial-gradient(2px 2px at 40px 70px, var(--neon-blue), transparent),
+    radial-gradient(1px 1px at 90px 40px, var(--neon-pink), transparent),
+    radial-gradient(1px 1px at 130px 80px, var(--success), transparent),
+    radial-gradient(2px 2px at 160px 30px, var(--neon-purple), transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: particleFloat 15s ease-in-out infinite;
+  opacity: 0.4;
+  /* 防止背景阻止点击事件 */
+  pointer-events: none;
+}
+
+.register-card {
+  position: relative;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(0, 255, 128, 0.3);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 50px rgba(0, 255, 128, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  animation: slideInUp 0.8s ease-out;
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.register-title {
+  font-size: 48px;
+  margin-bottom: 8px;
+  background: linear-gradient(45deg, var(--neon-green), var(--success));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(0, 255, 128, 0.5);
+  animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+.register-subtitle {
+  color: var(--text-secondary);
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  font-weight: 300;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+.title-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--neon-green),
+    var(--success),
+    transparent
+  );
+  margin: 0 auto;
+  animation: dividerPulse 2s ease-in-out infinite;
+}
+
+.register-form {
+  margin-bottom: 32px;
+}
+
+.register-btn {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: rgba(255, 0, 64, 0.1);
+  border: 1px solid rgba(255, 0, 64, 0.3);
+  border-radius: 4px;
+  color: var(--danger);
+  font-family: var(--font-secondary);
+  font-size: 14px;
+  margin-bottom: 20px;
+  animation: errorShake 0.5s ease-in-out;
+}
+
+.error-icon {
+  font-size: 16px;
+  animation: pulse 1.5s infinite;
+}
+
+.register-footer {
+  text-align: center;
+  border-top: 1px solid var(--dark-border);
+  padding-top: 24px;
+}
+
+.register-links {
+  margin-bottom: 20px;
+}
+
+.auth-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-family: var(--font-secondary);
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.auth-link:hover {
+  color: var(--success);
+}
+
+.link-highlight {
+  color: var(--success);
+  font-weight: 600;
+  margin-left: 4px;
+  transition: all 0.3s ease;
+}
+
+.auth-link:hover .link-highlight {
+  text-shadow: 0 0 8px currentColor;
+}
+
+.version-info {
+  opacity: 0.6;
+}
+
+.version-text {
+  font-family: var(--font-primary);
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .register-page {
+    padding: 16px;
+  }
+
+  .register-container {
+    max-width: 360px;
+  }
+
+  .register-title {
+    font-size: 36px;
+  }
+
+  .register-subtitle {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-container {
+    max-width: 320px;
+  }
+
+  .register-title {
+    font-size: 32px;
+  }
+
+  .register-card .cyber-card__content {
+    padding: 20px;
+  }
+}
+
+/* 特殊效果 - 数据流动画 */
+.register-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--neon-green) 25%,
+    var(--success) 50%,
+    var(--neon-green) 75%,
+    transparent 100%
+  );
+  animation: dataFlow 3s ease-in-out infinite;
+}
+
+/* 继承动画 */
+@keyframes circuitMove {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  100% {
+    transform: translateX(50px) translateY(50px);
+  }
+}
+
+@keyframes particleFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-20px) rotate(120deg);
+  }
+  66% {
+    transform: translateY(20px) rotate(240deg);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes titleGlow {
+  0% {
+    filter: brightness(1) contrast(1);
+  }
+  100% {
+    filter: brightness(1.2) contrast(1.1);
+  }
+}
+
+@keyframes dividerPulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scaleX(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1.1);
+  }
+}
+
+@keyframes errorShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes dataFlow {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}

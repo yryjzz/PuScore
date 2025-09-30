@@ -1,0 +1,102 @@
+.input-wrapper {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.input-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--neon-blue);
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
+.form-input {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(17, 17, 17, 0.8);
+  border: 1px solid var(--dark-border);
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--neon-blue);
+  background: rgba(17, 17, 17, 0.95);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+}
+
+.form-input.error {
+  border-color: var(--danger);
+  box-shadow: 0 0 15px rgba(255, 0, 64, 0.3);
+}
+
+.form-input.error:focus {
+  border-color: var(--danger);
+  box-shadow: 0 0 15px rgba(255, 0, 64, 0.5);
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px;
+  border-radius: 2px;
+  transition: color 0.3s ease;
+}
+
+.password-toggle:hover {
+  color: var(--neon-blue);
+}
+
+.password-toggle:focus {
+  outline: none;
+  color: var(--neon-blue);
+}
+
+.input-error {
+  display: block;
+  margin-top: 6px;
+  color: var(--danger);
+  font-family: var(--font-secondary);
+  font-size: 14px;
+  animation: fadeInUp 0.3s ease;
+}
+
+/* 赛博朋克动画效果 */
+@keyframes inputGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+  }
+}
+
+.form-input:focus {
+  animation: inputGlow 2s infinite;
+}

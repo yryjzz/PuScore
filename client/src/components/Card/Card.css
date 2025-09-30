@@ -1,0 +1,148 @@
+.cyber-card {
+  position: relative;
+  background: rgba(17, 17, 17, 0.9);
+  border: 1px solid var(--dark-border);
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.cyber-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--neon-blue) 20%,
+    var(--neon-pink) 40%,
+    var(--neon-blue) 60%,
+    transparent
+  );
+  opacity: 0.8;
+}
+
+.cyber-card__header {
+  padding: 20px 24px 0;
+}
+
+.cyber-card__title {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--neon-blue);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 12px 0;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.cyber-card__content {
+  padding: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.cyber-card__glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  background: radial-gradient(
+    circle,
+    rgba(0, 255, 255, 0.03) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+/* 卡片变体 */
+.cyber-card--primary {
+  border-color: rgba(0, 255, 255, 0.3);
+}
+
+.cyber-card--primary::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--neon-blue),
+    transparent
+  );
+}
+
+.cyber-card--danger {
+  border-color: rgba(255, 0, 64, 0.3);
+}
+
+.cyber-card--danger::before {
+  background: linear-gradient(90deg, transparent, var(--danger), transparent);
+}
+
+.cyber-card--danger .cyber-card__title {
+  color: var(--danger);
+  text-shadow: 0 0 10px rgba(255, 0, 64, 0.5);
+}
+
+.cyber-card--success {
+  border-color: rgba(0, 255, 128, 0.3);
+}
+
+.cyber-card--success::before {
+  background: linear-gradient(90deg, transparent, var(--success), transparent);
+}
+
+.cyber-card--success .cyber-card__title {
+  color: var(--success);
+  text-shadow: 0 0 10px rgba(0, 255, 128, 0.5);
+}
+
+/* 悬停效果 */
+.cyber-card:hover {
+  border-color: rgba(0, 255, 255, 0.6);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.cyber-card:hover .cyber-card__glow {
+  opacity: 1;
+}
+
+.cyber-card:hover::before {
+  opacity: 1;
+  animation: borderPulse 2s infinite;
+}
+
+/* 边框脉冲动画 */
+@keyframes borderPulse {
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .cyber-card__content {
+    padding: 20px;
+  }
+
+  .cyber-card__header {
+    padding: 16px 20px 0;
+  }
+
+  .cyber-card__title {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+}

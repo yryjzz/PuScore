@@ -1,0 +1,562 @@
+/* 管理员控制面板样式 */
+.admin-panel {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 100%);
+  color: #ffffff;
+  position: relative;
+}
+
+.admin-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 20px;
+  background: rgba(10, 10, 10, 0.8);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+.admin-header h1 {
+  font-size: 2.5rem;
+  background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 3s ease-in-out infinite;
+  margin: 0 0 10px 0;
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.admin-header p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+/* 响应式设计 - 小屏幕时改为单列 */
+@media (max-width: 1024px) {
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 管理员卡片样式 */
+.admin-card {
+  background: rgba(15, 15, 15, 0.95);
+  border: 1px solid rgba(0, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.admin-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00ffff, transparent);
+  animation: scan 2s linear infinite;
+}
+
+.admin-card:hover {
+  border-color: rgba(0, 255, 255, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.admin-card h2 {
+  color: #00ffff;
+  font-size: 1.4rem;
+  margin: 0 0 20px 0;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 时间控制卡片 */
+.time-control-card {
+  border-color: rgba(0, 255, 255, 0.15);
+}
+
+.time-control-card:hover {
+  border-color: rgba(0, 255, 255, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 255, 255, 0.15);
+}
+
+/* 系统信息卡片 */
+.system-info-card {
+  border-color: rgba(255, 0, 255, 0.15);
+}
+
+.system-info-card:hover {
+  border-color: rgba(255, 0, 255, 0.25);
+  box-shadow: 0 8px 32px rgba(255, 0, 255, 0.15);
+}
+
+.system-info-card h2 {
+  color: #ff00ff;
+  text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+}
+
+/* 签到管理卡片 */
+.checkin-management-card {
+  border-color: rgba(255, 215, 0, 0.15);
+}
+
+.checkin-management-card:hover {
+  border-color: rgba(255, 215, 0, 0.25);
+  box-shadow: 0 8px 32px rgba(255, 215, 0, 0.15);
+}
+
+.checkin-management-card h2 {
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+/* 朴分管理卡片 */
+.point-management-card {
+  border-color: rgba(0, 255, 0, 0.15);
+}
+
+.point-management-card:hover {
+  border-color: rgba(0, 255, 0, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 255, 0, 0.15);
+}
+
+.point-management-card h2 {
+  color: #00ff00;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+/* 状态项样式 */
+.time-status,
+.system-stats,
+.checkin-stats,
+.point-expire-info {
+  margin-bottom: 20px;
+}
+
+.status-item,
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  border-left: 3px solid rgba(0, 255, 255, 0.3);
+}
+
+.status-item label,
+.stat-item label {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.status-item .value,
+.stat-item .value {
+  color: #ffffff;
+  font-family: "Courier New", monospace;
+  font-size: 0.9rem;
+}
+
+.status-item .status {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status.enabled {
+  background: rgba(0, 255, 0, 0.2);
+  color: #00ff00;
+  border: 1px solid rgba(0, 255, 0, 0.3);
+}
+
+.status.disabled {
+  background: rgba(255, 0, 0, 0.2);
+  color: #ff0000;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.status.expire {
+  background: rgba(255, 165, 0, 0.2);
+  color: #ffa500;
+  border: 1px solid rgba(255, 165, 0, 0.3);
+}
+
+.status.normal {
+  background: rgba(0, 255, 0, 0.2);
+  color: #00ff00;
+  border: 1px solid rgba(0, 255, 0, 0.3);
+}
+
+/* 控制组样式 */
+.time-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.control-group {
+  display: flex;
+  gap: 12px;
+  align-items: end;
+}
+
+.control-group .input-group {
+  flex: 1;
+}
+
+/* 时间输入框样式 - 增加宽度 */
+.control-group .time-input {
+  flex: 2;
+  min-width: 280px;
+  width: 100%;
+}
+
+/* 小时数输入框样式 - 增加宽度 */
+.control-group .hours-input {
+  flex: 2;
+  min-width: 200px;
+  width: 100%;
+}
+
+.control-group button {
+  min-width: 120px;
+  flex-shrink: 0;
+}
+
+/* 系统信息模块样式 */
+.system-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.info-group {
+  background: rgba(0, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.group-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--neon-blue);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.info-value {
+  font-family: "Courier New", monospace;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.env-badge {
+  background: rgba(0, 255, 255, 0.2);
+  color: var(--neon-blue);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.uptime {
+  color: var(--neon-green);
+}
+
+.memory {
+  color: var(--neon-orange);
+}
+
+.cpu {
+  color: var(--neon-pink);
+}
+
+.count {
+  color: var(--neon-blue);
+  font-weight: 600;
+}
+
+.system-actions {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: center;
+}
+
+/* 签到管理模块样式 */
+.checkin-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.products-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.product-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.product-item:hover {
+  background: rgba(0, 255, 255, 0.05);
+  border-color: rgba(0, 255, 255, 0.2);
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.product-name {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.product-desc {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.3;
+}
+
+.product-status {
+  font-size: 0.8rem;
+  color: var(--neon-blue);
+  background: rgba(0, 255, 255, 0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.loading-text {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+  padding: 20px;
+}
+
+.checkin-actions {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* 朴分管理模块样式 */
+.point-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.expire-rules {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rule-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(255, 0, 64, 0.08);
+  border: 1px solid rgba(255, 0, 64, 0.2);
+  border-radius: 6px;
+}
+
+.rule-date {
+  font-weight: 600;
+  color: var(--danger);
+  font-size: 0.9rem;
+}
+
+.rule-desc {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.status-badge.expire {
+  background: rgba(255, 0, 64, 0.2);
+  color: var(--danger);
+  border: 1px solid var(--danger);
+}
+
+.status-badge.normal {
+  background: rgba(0, 255, 128, 0.2);
+  color: var(--success);
+  border: 1px solid var(--success);
+}
+
+.point-actions {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.danger-action {
+  background: rgba(255, 0, 64, 0.1) !important;
+  border-color: var(--danger) !important;
+  color: var(--danger) !important;
+}
+
+.danger-action:hover {
+  background: rgba(255, 0, 64, 0.2) !important;
+}
+
+.warning-action {
+  background: rgba(255, 170, 0, 0.1) !important;
+  border-color: var(--warning) !important;
+  color: var(--warning) !important;
+}
+
+.warning-action:hover {
+  background: rgba(255, 170, 0, 0.2) !important;
+}
+
+.management-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.management-actions button {
+  width: 100%;
+}
+
+/* 加载遮罩 */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(5px);
+}
+
+/* 动画效果 */
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes scan {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .admin-panel {
+    padding: 16px;
+  }
+
+  .admin-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .admin-header h1 {
+    font-size: 2rem;
+  }
+
+  .admin-card {
+    padding: 20px;
+  }
+
+  .control-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .control-group button {
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .admin-card {
+    padding: 16px;
+  }
+}
