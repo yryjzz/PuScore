@@ -6,6 +6,7 @@ WORKDIR /app
 
 # 将本地的 package.json 和 package-lock.json 文件复制到容器中
 COPY package*.json ./
+RUN npm ci
 
 # 安装项目依赖
 RUN npm install
