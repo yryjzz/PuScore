@@ -28,5 +28,9 @@
   "devDependencies": {
     "esbuild": "^0.25.10",
     "nodemon": "^3.1.7"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   }
 }

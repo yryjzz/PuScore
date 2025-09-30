@@ -17,9 +17,12 @@
 
 ### 2. 配置服务
 
+**重要配置项：**
+
 - 设置 Root Directory: `server`
+- Build Command: `npm ci --only=production`
 - Start Command: `npm start`
-- Build Command: `npm install`
+- 或者让 Railway 自动检测（推荐）
 
 ### 3. 环境变量配置
 
