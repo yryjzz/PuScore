@@ -9,6 +9,7 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
+    "build": "esbuild src/app.js --bundle --platform=node --outfile=dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -19,10 +20,12 @@
     "fastify": "^5.6.1",
     "jsonwebtoken": "^9.0.2",
     "node-cron": "^4.2.1",
+    "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.7",
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
+    "esbuild": "^0.25.10",
     "nodemon": "^3.1.7"
   }
 }
